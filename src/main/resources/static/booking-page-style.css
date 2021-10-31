@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.container{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+table, th,td{
+	border:1px solid black;
+}
+
+tr:last-child{
+	border:none;
+}
+
