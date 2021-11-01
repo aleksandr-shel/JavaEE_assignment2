@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Checkout page</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/checkout-page-style.css">
+<title>Payment page</title>
 </head>
 <body>
 	<nav>
@@ -39,18 +39,15 @@
 		</ul>
 	</nav>
 	<div class="container-flex">
-		<h1> Checkout Information</h1>
-		<form class="checkout-form" action="/book-flight" method="POST">
-			<input type="hidden" name="custId" value="${accountId }">
-			<input type="hidden" name="flightCode" value="${flightCode}">
-			<input type="hidden" name="flightPrice" value="${priceFlight}" id="flightPrice">
+		<h1> Payment information</h1>
+		<form action="/book-flight" method="POST">
 			<div>
-				<label for="totalPassenger"> Total passenger: </label>
-				<input type="number" id="totalPassenger" name="totalPassenger" required min="1">
+				<label for="cardholdername"> Cardholder name:  </label>
+				<input type="text" id="cardholdername" name="cardholdername">
 			</div>
 			<div>
-				<label for="amountpaid"> Amount to pay: $</label>
-				<input type="number" id="amountpaid" disabled name="amountPaid">
+				<label for="ccn"> Credit Card Number: </label>
+				<input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
 			</div>
 			<div>
 				<button type="submit">Move to Payment Information</button>
@@ -58,7 +55,5 @@
 			</div>
 		</form>
 	</div>
-	
-	<script src="${pageContext.request.contextPath }/resources/script.js"></script>
 </body>
 </html>

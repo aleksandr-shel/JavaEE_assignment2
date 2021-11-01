@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.model.Flight;
+import com.spring.model.Reservation;
 
 @Controller
 public class AirportController extends BaseController {
@@ -96,5 +99,35 @@ public class AirportController extends BaseController {
 		}
 
 		return "error-signin";
+	}
+	
+	@RequestMapping("/checkout-flight")
+	public String checkoutpage(@RequestParam("flightCode") int flightCode, Model model) {
+		
+		if (signedIn) {
+			model.addAttribute("accountId",accountId);
+			model.addAttribute("flightCode",flightCode);
+			model.addAttribute("signedIn", signedIn);
+			model.addAttribute("priceFlight", flightRep.getById(flightCode).getPrice());
+			return "checkout-page";
+		}else {
+			return "error-signin";
+		}
+	}
+	
+	
+	@PostMapping("/book-flight")
+	public String bookflight(@RequestParam("custId") int accountId, @RequestParam("flightCode") int flightCode, 
+			@RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") String amountPaid, Model model) {
+		
+		if (signedIn) {
+			
+			Reservation reservation = new Reservation(accountId, flightCode, totalPassengers, Double.parseDouble(amountPaid));
+			resRep.save(reservation);
+			model.addAttribute("reservation", resRep.save(reservation));
+			return "payment-page";
+		} else {
+			return "error-signin";
+		}
 	}
 }

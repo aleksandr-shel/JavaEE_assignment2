@@ -74,10 +74,14 @@ public class PassengerController extends BaseController{
 	
 	@GetMapping("/update")
 	public String getUpdate(@RequestParam("custId") int custId, Model model) {
-		Passenger pass = pasRep.getById(custId);
-		model.addAttribute("account", pass);
-		model.addAttribute("signedIn",signedIn);
-		return "account-settings-update-page";
+		if (signedIn) {
+			Passenger pass = pasRep.getById(custId);
+			model.addAttribute("account", pass);
+			model.addAttribute("signedIn",signedIn);
+			return "account-settings-update-page";
+		} else {
+			return "error-signin";
+		}
 	}
 	
 	@PostMapping("/update")

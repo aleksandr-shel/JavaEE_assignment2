@@ -130,7 +130,7 @@
 						${flight.price}
 					</td>
 					<td>
-						<a href="/book-flight/${flight.flightCode }"> Book a flight </a>
+						<a href="/checkout-flight?flightCode=${flight.flightCode }"> Book a flight </a>
 					</td>
 				</tr>
 			</c:forEach>
