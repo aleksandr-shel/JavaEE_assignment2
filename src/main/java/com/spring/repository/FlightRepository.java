@@ -11,6 +11,6 @@ import com.spring.model.Flight;
 
 public interface FlightRepository extends JpaRepository<Flight,Integer> {
 	
-	@Query(nativeQuery = true, value = "SELECT * FROM flight WHERE departuredate = :departuredate")
-    public List<Flight> getFlightsByDate(@Param("departuredate") Date departuredate);
+	@Query(nativeQuery = true, value = "SELECT * FROM flight WHERE departuredate = :departuredate AND arrivaldate = :arrivaldate  ")
+    public List<Flight> getFlightsByDate(@Param("departuredate") Date departuredate, Date arrivaldate);
 }

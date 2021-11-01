@@ -48,20 +48,24 @@ public class AirportController extends BaseController {
 	@RequestMapping("/booking-page")
 	public String bookingpage(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		if (signedIn) {
-			
+
 			List<Flight> listFlights;
-			
-			String searchDateString = request.getParameter("search");
-			
-			if(searchDateString != null) {
-				
-				Date searchDate = new SimpleDateFormat("yyyy-MM-dd").parse((searchDateString));
-				listFlights = flightRep.getFlightsByDate(searchDate);
+
+			String searchDepartureString = request.getParameter("searchDeparture");
+			String searchArrivalString = request.getParameter("searchArrival");
+
+			if (searchDepartureString != null && searchArrivalString != null) {
+
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				Date searchDepartureDate = sdf.parse((searchDepartureString));
+				Date searchArrivalDate = sdf.parse((searchArrivalString));
+
+				listFlights = flightRep.getFlightsByDate(searchDepartureDate, searchArrivalDate);
 			} else {
 				listFlights = flightRep.findAll();
-				
 			}
-			
+
 			model.addAttribute("signedIn", signedIn);
 			model.addAttribute("flights", listFlights);
 
@@ -70,36 +74,35 @@ public class AirportController extends BaseController {
 
 		return "error-signin";
 	}
-	
-	/*@RequestMapping("/booking-page")
-	public String bookingpage(Model model) {
-		if (signedIn) {
-			List<Flight> list = flightRep.findAll();
-			model.addAttribute("signedIn", signedIn);
-			model.addAttribute("flights", list);
 
-			return "booking_page";
-		}
+	/*
+	 * @RequestMapping("/booking-page") public String bookingpage(Model model) { if
+	 * (signedIn) { List<Flight> list = flightRep.findAll();
+	 * model.addAttribute("signedIn", signedIn); model.addAttribute("flights",
+	 * list);
+	 * 
+	 * return "booking_page"; }
+	 * 
+	 * return "error-signin"; }
+	 */
 
-		return "error-signin";
-	}*/
 
-	@RequestMapping("/search")
-	public String search(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-
-		if (signedIn) {
-			String searchDateString = request.getParameter("search");
-			Date searchDate = new SimpleDateFormat("yyyy-MM-dd").parse((searchDateString));
-
-			List<Flight> listFlights = flightRep.getFlightsByDate(searchDate);
-
-			model.addAttribute("flights", listFlights);
-
-			return "booking_page";
-		}
-
-		return "error-signin";
-	}
+//	@RequestMapping("/search")
+//	public String search(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+//
+//		if (signedIn) {
+//			String searchDateString = request.getParameter("search");
+//			Date searchDate = new SimpleDateFormat("yyyy-MM-dd").parse((searchDateString));
+//
+//			List<Flight> listFlights = flightRep.getFlightsByDate(searchDate, searchDate);
+//
+//			model.addAttribute("flights", listFlights);
+//
+//			return "booking_page";
+//		}
+//
+//		return "error-signin";
+//	}
 	
 	@RequestMapping("/checkout-flight")
 	public String checkoutpage(@RequestParam("flightCode") int flightCode, Model model) {
@@ -131,3 +134,4 @@ public class AirportController extends BaseController {
 		}
 	}
 }
+
