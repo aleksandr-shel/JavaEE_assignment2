@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,12 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.model.Flight;
-import com.spring.model.Passenger;
 import com.spring.model.Reservation;
 
 @Controller
@@ -39,9 +38,10 @@ public class AirportController extends BaseController {
 	@RequestMapping("/account-page")
 	public String accountpage(Model model) {
 		if (signedIn) {
-			List<Reservation> reservations = resRep.getReservationByCustId(accountId);
-			//List<Reservation> reservations = resRep.findAll();
-			model.addAttribute("reservations", reservations);
+			
+			List<String[]> info = resRep.getReservationInfo(accountId);
+			
+			model.addAttribute("infos", info);
 			model.addAttribute("signedIn", signedIn);
 			model.addAttribute("accountId", accountId);
 			return "account-page";

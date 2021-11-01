@@ -39,26 +39,61 @@
 	</nav>
 	<div class="container-flex">
 		<div>
+			<c:if test="${!(empty infos)}">
 			<table>
 				<tr>
-					<th>Flight Code</th>
 					<th>Total Passengers</th>
 					<th>Amount Paid</th>
+					<th>Airline</th>
+					<th>Departure Date</th>
+					<th>Departure Time</th>
+					<th>Departure City</th>
+					<th>Departure Country</th>
+					<th>Arrival Date</th>
+					<th>Arrival Time</th>
+					<th>Arrival City</th>
+					<th>Arrival Country</th>
 				</tr>
-				<c:forEach var="reser" items="${reservations}">
+				<c:forEach var="info" items="${infos}">
 				<tr>
 					<td>
-						${reser.flightCode }
+						${info[0] }
 					</td>
 					<td>
-						${reser.totalPassenger }
+						$ ${info[1]} 
 					</td>
 					<td>
-						$ ${reser.amountPaid } 
+						${info[2]} 
+					</td>
+					<td>
+						${info[3]} 
+					</td>
+						
+					<td>
+						${info[4]} 
+					</td>
+					<td>
+						${info[5]} 
+					</td>
+					<td>
+						${info[6]} 
+					</td>
+					<td>
+						${info[7]} 
+					</td>
+					<td>
+						${info[8]} 
+					</td>
+					<td>
+						${info[9]} 
+					</td>
+					<td>
+						${info[10]} 
 					</td>
 				</tr>
 				</c:forEach>
 			</table>
+			</c:if>
 		</div>
 		<div>
 			<ul class="account-page-list">

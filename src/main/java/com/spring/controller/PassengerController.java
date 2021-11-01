@@ -58,6 +58,8 @@ public class PassengerController extends BaseController{
 		
 		List<Passenger> passengers = pasRep.findAll();
 		
+		
+		
 		boolean usernameExists = false;
 		
 		for (Passenger passenger : passengers) {

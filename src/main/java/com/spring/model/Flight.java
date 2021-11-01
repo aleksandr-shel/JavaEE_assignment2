@@ -49,15 +49,9 @@ public class Flight {
 	
 	private double price;
 	
-	
-	
-	
 	public Flight() {
 		
 	}
-
-
-
 
 	public int getFlightCode() {
 		return flightCode;
