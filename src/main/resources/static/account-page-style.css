@@ -1,0 +1,35 @@
+
+
+.account-page-list{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+.account-page-list li a{
+	text-decoration:none;
+	display:block;
+	padding: 14px 16px;
+	text-align:center;
+}
+
+.account-page-list li a:hover {
+  background-color: var(--generalcolor);
+  color:white;
+}
+
+.container{
+	float:left;
+}
+
+.container-flex{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+table, th, td, tr{
+	border: 1px solid black;
+}
+
+

@@ -40,20 +40,74 @@
 	</nav>
 	<div class="container-flex">
 		<h1> Payment information</h1>
-		<form action="/book-flight" method="POST">
+		<form action="/passenger/pay" method="POST">
 			<div>
 				<label for="cardholdername"> Cardholder name:  </label>
-				<input type="text" id="cardholdername" name="cardholdername">
+				<input type="text" id="cardholdername" name="cardholdername" required>
+				<input type="number" placeholder="CVV" min="100" max="999"  required>
 			</div>
 			<div>
 				<label for="ccn"> Credit Card Number: </label>
-				<input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+				<input id="ccn" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required>
 			</div>
 			<div>
-				<button type="submit">Move to Payment Information</button>
+				<Label>Expiration Date: </label>
+				<select name='expireMM' id='expireMM'>
+				    <option value=''>Month</option>
+				    <option value='01'>January</option>
+				    <option value='02'>February</option>
+				    <option value='03'>March</option>
+				    <option value='04'>April</option>
+				    <option value='05'>May</option>
+				    <option value='06'>June</option>
+				    <option value='07'>July</option>
+				    <option value='08'>August</option>
+				    <option value='09'>September</option>
+				    <option value='10'>October</option>
+				    <option value='11'>November</option>
+				    <option value='12'>December</option>
+				</select> 
+				<select name='expireYY' id='expireYY'>
+				    <option value=''>Year</option>
+				    <option value='21'>2021</option>
+				    <option value='22'>2022</option>
+				    <option value='23'>2023</option>
+				    <option value='24'>2024</option>
+				    <option value='25'>2025</option>
+				    <option value='26'>2026</option>
+				</select> 
+				
+			</div>
+			<div>
+				<label for=""> Address: </label>
+				<input type="text" id="address" name="address" value="${account.address }" required>
+			</div>
+			<div>
+				<label for="city"> City: </label>
+				<input type="text" id="city" name="city" value="${account.city }" required>
+			</div>
+			<div>
+				<label for="postalcode"> Postal Code: </label>
+				<input type="text" id="postalcode" name="postalCode" value="${account.postalCode }" required>
+			</div>
+			<div>
+				<labeL for="country"> Country: </labeL>
+				<input type="text" id="country" name="country" value="${account.country }" required>
+			</div>
+			<input type="hidden" name="amountPaid" value="${reservation.amountPaid}">
+			<input type="hidden" name="totalPassenger" value="${reservation.totalPassenger }">
+			<input type="hidden" name="flightCode" value="${reservation.flightCode }">
+			<input type="hidden" name="custId" value="${reservation.custId}">
+			<div>
+				<button type="submit">Confirm Payment</button>
 				<button type="button" onclick="location.href = '/booking-page'">Cancel</button>
 			</div>
 		</form>
 	</div>
+	<script>
+		document.getElementById('ccn').addEventListener('input', function (e) {
+		  e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+		});
+	</script>
 </body>
 </html>

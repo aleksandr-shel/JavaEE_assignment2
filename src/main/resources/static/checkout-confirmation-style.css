@@ -1,0 +1,25 @@
+
+
+
+.container-flex{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+}
+
+.confirm-page {
+	list-style-type:none;
+}
+
+.confirm-page li a {
+	text-decoration:none;
+	display:block;
+	padding: 14px 16px;
+	text-align:center;
+}
+
+.confirm-page li a:hover {
+  background-color: var(--generalcolor);
+  color:white;
+}

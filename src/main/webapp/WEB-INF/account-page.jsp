@@ -37,11 +37,35 @@
 			</c:if>
 		</ul>
 	</nav>
-	
-	<div class="container">
-		<h4> Here will be reservation list of an account</h4>
-		<a href="/booking-page"> Book a flight</a>
-		<a href="/passenger/update?custId=${accountId }"> Account Information</a>
+	<div class="container-flex">
+		<div>
+			<table>
+				<tr>
+					<th>Flight Code</th>
+					<th>Total Passengers</th>
+					<th>Amount Paid</th>
+				</tr>
+				<c:forEach var="reser" items="${reservations}">
+				<tr>
+					<td>
+						${reser.flightCode }
+					</td>
+					<td>
+						${reser.totalPassenger }
+					</td>
+					<td>
+						$ ${reser.amountPaid } 
+					</td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<div>
+			<ul class="account-page-list">
+				<li><a href="/booking-page"> Book a flight</a></li>
+				<li><a href="/passenger/update?custId=${accountId }"> Account Information</a></li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

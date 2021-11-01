@@ -40,7 +40,7 @@
 	</nav>
 	<div class="container-flex">
 		<h1> Checkout Information</h1>
-		<form class="checkout-form" action="/book-flight" method="POST">
+		<form class="checkout-form" action="/passenger/book-flight" method="POST">
 			<input type="hidden" name="custId" value="${accountId }">
 			<input type="hidden" name="flightCode" value="${flightCode}">
 			<input type="hidden" name="flightPrice" value="${priceFlight}" id="flightPrice">

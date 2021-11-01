@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Table(name="reservation")
 public class Reservation {
 	@Id
-	@Column(name="reservationId")
+	@Column(name="reservationid")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int reservationId;
 	

@@ -20,4 +20,6 @@
 	totalPassenger.addEventListener("keyup",()=>{
 		amountPaid.value = (flightPrice * totalPassenger.value).toFixed(2);
 	});
+	
+	
 })()

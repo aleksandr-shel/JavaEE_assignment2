@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.spring.model.Flight;
 import com.spring.model.Passenger;
+import com.spring.model.Reservation;
 import com.spring.repository.PassengerRepository;
 
 @Controller
@@ -39,6 +41,7 @@ public class PassengerController extends BaseController{
 	@RequestMapping("/sign-off")
 	public RedirectView signoff() {
 		signedIn = false;
+		accountId = 0;
 		return new RedirectView("/");
 	}
 	
@@ -102,5 +105,35 @@ public class PassengerController extends BaseController{
 		model.addAttribute("account", pas);
 		
 		return "account-settings-update-page";
+	}
+	
+	@PostMapping("/book-flight")
+	public String bookflight(@RequestParam("custId") int accountId, @RequestParam("flightCode") int flightCode, 
+			@RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") double amountPaid, Model model) {
+		System.out.println(accountId);
+		if (signedIn) {
+			Passenger passenger = pasRep.getById(accountId);
+			Reservation reservation = new Reservation(accountId, flightCode, totalPassengers, amountPaid);
+			model.addAttribute("signedIn", signedIn);
+			model.addAttribute("account", passenger);
+			model.addAttribute("reservation", reservation);
+			return "payment-page";
+		} else {
+			return "error-signin";
+		}
+	}
+	
+	@PostMapping("/pay")
+	public String pay(@RequestParam("flightCode") int flightCode, @RequestParam("custId") int custId, @RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") double amountPaid, Model model) {
+		Flight flight = flightRep.getById(flightCode);
+		if (signedIn) {
+			resRep.save(new Reservation(custId, flightCode, totalPassengers, amountPaid));
+			model.addAttribute("signedIn", signedIn);
+			model.addAttribute("flightDestination",flight.getArrivalCity() + ", " + flight.getArrivalCountry());
+			model.addAttribute("totalPassenger", totalPassengers);
+			model.addAttribute("amountPaid", amountPaid);
+			return "checkout-confirmation";
+		}
+		return "error-signin";
 	}
 }

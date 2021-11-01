@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.model.Flight;
+import com.spring.model.Passenger;
 import com.spring.model.Reservation;
 
 @Controller
@@ -38,6 +39,9 @@ public class AirportController extends BaseController {
 	@RequestMapping("/account-page")
 	public String accountpage(Model model) {
 		if (signedIn) {
+			List<Reservation> reservations = resRep.getReservationByCustId(accountId);
+			//List<Reservation> reservations = resRep.findAll();
+			model.addAttribute("reservations", reservations);
 			model.addAttribute("signedIn", signedIn);
 			model.addAttribute("accountId", accountId);
 			return "account-page";
@@ -118,20 +122,5 @@ public class AirportController extends BaseController {
 		}
 	}
 	
-	
-	@PostMapping("/book-flight")
-	public String bookflight(@RequestParam("custId") int accountId, @RequestParam("flightCode") int flightCode, 
-			@RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") String amountPaid, Model model) {
-		
-		if (signedIn) {
-			
-			Reservation reservation = new Reservation(accountId, flightCode, totalPassengers, Double.parseDouble(amountPaid));
-			resRep.save(reservation);
-			model.addAttribute("reservation", resRep.save(reservation));
-			return "payment-page";
-		} else {
-			return "error-signin";
-		}
-	}
 }
 
