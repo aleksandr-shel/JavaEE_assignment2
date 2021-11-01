@@ -3,8 +3,6 @@ package com.spring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,6 +76,7 @@ public class PassengerController extends BaseController{
 	public String getUpdate(@RequestParam("custId") int custId, Model model) {
 		Passenger pass = pasRep.getById(custId);
 		model.addAttribute("account", pass);
+		model.addAttribute("signedIn",signedIn);
 		return "account-settings-update-page";
 	}
 	

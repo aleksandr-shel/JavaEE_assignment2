@@ -7,14 +7,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.model.Flight;
-import com.spring.repository.FlightRepository;
 
 @Controller
 public class AirportController extends BaseController {
@@ -84,7 +81,7 @@ public class AirportController extends BaseController {
 		return "error-signin";
 	}*/
 
-	/*@RequestMapping("/search")
+	@RequestMapping("/search")
 	public String search(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 
 		if (signedIn) {
@@ -99,5 +96,5 @@ public class AirportController extends BaseController {
 		}
 
 		return "error-signin";
-	}*/
+	}
 }

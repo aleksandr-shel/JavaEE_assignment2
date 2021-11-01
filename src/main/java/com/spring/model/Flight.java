@@ -88,7 +88,7 @@ public class Flight {
 
 
 	public String getDepartureDate() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");  
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
 		return dateFormat.format(departureDate);
 	}
 
@@ -146,7 +146,7 @@ public class Flight {
 
 
 	public String getArrivalDate() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd"); 
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 		return dateFormat.format(arrivalDate);
 	}
 
