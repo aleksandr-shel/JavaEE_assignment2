@@ -38,6 +38,23 @@
 			
 		</ul>
 	</nav>
+	
+	<div>
+		<form action="/booking-page" method="POST">
+
+		<section>
+			<label for="search">Departure Date: </label>
+			<input id="search" name="search" placeholder="yyyy-mm-dd" name="search" maxlength="10"
+														pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+		</section>
+		
+		<section>
+			<input type="submit" id="searchButton" name="searchButton" value="Search" />
+		</section>
+		
+		</form>
+	</div>
+	
 	<div class="container">
 		<table>
 			<tr>
