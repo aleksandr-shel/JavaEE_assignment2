@@ -39,14 +39,29 @@
 		</ul>
 	</nav>
 	
+	<br>
+	
 	<div>
 		<form action="/booking-page" method="POST">
 
 		<section>
-			<label for="search">Departure Date: </label>
-			<input id="search" name="search" placeholder="yyyy-mm-dd" name="search" maxlength="10"
+			<label for="searchDeparture">Departure Date: </label>
+			<input id="searchDeparture" name="searchDeparture" placeholder="yyyy-mm-dd" maxlength="10"
 														pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+														
+			<br><br>
+			
+			<label for="searchArrival">Arrival Date: </label>
+			<input id="searchArrival" name="searchArrival" placeholder="yyyy-mm-dd" maxlength="10"
+														pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
+														
+			<br><br>
+			
+			<label for="numberPassengers">Number of Passengers: </label>
+			<input type="number" id="numberPassengers" name="numberPassengers" min="1" step="1" required>
 		</section>
+		
+		<br>
 		
 		<section>
 			<input type="submit" id="searchButton" name="searchButton" value="Search" />
