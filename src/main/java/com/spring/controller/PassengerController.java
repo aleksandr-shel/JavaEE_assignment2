@@ -54,7 +54,7 @@ public class PassengerController extends BaseController{
 		return "error-signin";
 	}
 	
-	// signup process / creating of new user
+	// signup process / creating a new user
 	@PostMapping("/create")
 	public String signup(@RequestParam("username") String username, @RequestParam("password") String password, 
 			@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
@@ -81,7 +81,7 @@ public class PassengerController extends BaseController{
 		}
 	}
 	
-	// account settings page
+	// account settings page where user can update account information
 	@GetMapping("/update")
 	public String getUpdate(@RequestParam("custId") int custId, Model model) {
 		if (signedIn) {
@@ -94,7 +94,7 @@ public class PassengerController extends BaseController{
 		}
 	}
 	
-	// update account information
+	// update account information process
 	@PostMapping("/update")
 	public String postUpdate(@RequestParam("custId") int custId, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname,
 			@RequestParam("phoneNumber") String phoneNumber, @RequestParam("address") String address, @RequestParam("city") String city, @RequestParam("postalCode") String postalCode,

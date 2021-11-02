@@ -38,7 +38,7 @@ public class AirportController extends BaseController {
 		return "signin_page";
 	}
 
-	//account page
+	//shows account page with information about reservations 
 	@RequestMapping("/account-page")
 	public String accountpage(Model model) {
 		if (signedIn) {
@@ -53,7 +53,7 @@ public class AirportController extends BaseController {
 		return "error-signin";
 	}
 
-	//booking page
+	//shows booking page with information of flights
 	@RequestMapping("/booking-page")
 	public String bookingpage(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		if (signedIn) {
@@ -84,7 +84,7 @@ public class AirportController extends BaseController {
 		return "error-signin";
 	}
 
-	//get checkout page 
+	//shows checkout page 
 	@RequestMapping("/checkout-flight")
 	public String checkoutpage(@RequestParam("flightCode") int flightCode, Model model) {
 		
