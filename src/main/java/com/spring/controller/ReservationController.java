@@ -16,7 +16,7 @@ import com.spring.model.Reservation;
 @RequestMapping("/reservation")
 public class ReservationController extends BaseController {
 	
-	
+	//shows information about a reservation
 	@RequestMapping("/update-page")
 	public String updatePage(@RequestParam("id")int reservationId, Model model) {
 		Reservation reservation = resRep.getById(reservationId);
@@ -26,6 +26,7 @@ public class ReservationController extends BaseController {
 		return "reservation-update";
 	}
 	
+	//updates information about a reservation
 	@PostMapping("/update")
 	public RedirectView update(@RequestParam("reservationId")int reservationId, @RequestParam("totalPassenger")int totalPassenger,
 			@RequestParam("amountPaid")double amountPaid) {
@@ -36,6 +37,7 @@ public class ReservationController extends BaseController {
 		return new RedirectView("/account-page");
 	}
 	
+	//deletes a reservation if the flight's departure date is 14 or more days away
 	@RequestMapping("/delete")
 	public RedirectView delete(@RequestParam("id") int reservationId) throws Exception {
 		
@@ -44,9 +46,11 @@ public class ReservationController extends BaseController {
 		Date departureDateOfFlight = resRep.getDateOfFlight(reservationId);
 		Date todayDate = new Date();
 		
+		//checks the difference between dates in milliseconds and converts it into days
 		long differenceInMillies = Math.abs(departureDateOfFlight.getTime() - todayDate.getTime());
 	    long differenceInDays = TimeUnit.DAYS.convert(differenceInMillies, TimeUnit.MILLISECONDS);
 	    
+	    //check if the flight's departure date is 14 or more days away
 	    if (differenceInDays >= 14)
 			resRep.delete(reservation);
 		
