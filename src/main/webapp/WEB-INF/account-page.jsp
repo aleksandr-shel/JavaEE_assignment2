@@ -37,6 +37,7 @@
 			</c:if>
 		</ul>
 	</nav>
+	<h1>Account Page</h1>
 	<div class="container-flex">
 		<div>
 			<c:if test="${!(empty infos)}">
