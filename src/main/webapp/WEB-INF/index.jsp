@@ -39,7 +39,7 @@
 	</nav>
 	
 	<div class="container">
-		<h1 style="text-align:center">Welcome to Flight Reservator</h1>
+		<h1 style="text-align:center">Welcome to Online Flight Reservation</h1>
 	</div>
 	
 	<script src="${pageContext.request.contextPath }/resources/script.js"></script>

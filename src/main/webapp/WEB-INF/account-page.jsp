@@ -53,6 +53,8 @@
 					<th>Arrival Time</th>
 					<th>Arrival City</th>
 					<th>Arrival Country</th>
+					<th></th>
+					<th></th>
 				</tr>
 				<c:forEach var="info" items="${infos}">
 				<tr>
@@ -89,6 +91,12 @@
 					</td>
 					<td>
 						${info[10]} 
+					</td>
+					<td>
+						<a href="/reservation/update-page?id=${info[11] }">Edit</a>
+					</td>
+					<td>
+						<a href="/">Delete</a>
 					</td>
 				</tr>
 				</c:forEach>
