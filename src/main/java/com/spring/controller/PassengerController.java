@@ -23,6 +23,8 @@ public class PassengerController extends BaseController{
 	@Autowired
 	private PassengerRepository pasRep;
 	
+	
+	//verification process 
 	@GetMapping("/signin")
 	public RedirectView signin(@RequestParam("username") String username, @RequestParam("password") String password) {
 		List<Passenger> list = pasRep.findAll();
@@ -38,6 +40,7 @@ public class PassengerController extends BaseController{
 		return new RedirectView("sign-in-error");
 	}
 	
+	//sign off process 
 	@RequestMapping("/sign-off")
 	public RedirectView signoff() {
 		signedIn = false;
@@ -45,12 +48,13 @@ public class PassengerController extends BaseController{
 		return new RedirectView("/");
 	}
 	
+	// verification error / error to login
 	@RequestMapping("/sign-in-error")
 	public String signerror() {
 		return "error-signin";
 	}
 	
-	
+	// signup process / creating of new user
 	@PostMapping("/create")
 	public String signup(@RequestParam("username") String username, @RequestParam("password") String password, 
 			@RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname) {
@@ -77,6 +81,7 @@ public class PassengerController extends BaseController{
 		}
 	}
 	
+	// account settings page
 	@GetMapping("/update")
 	public String getUpdate(@RequestParam("custId") int custId, Model model) {
 		if (signedIn) {
@@ -89,6 +94,7 @@ public class PassengerController extends BaseController{
 		}
 	}
 	
+	// update account information
 	@PostMapping("/update")
 	public String postUpdate(@RequestParam("custId") int custId, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname,
 			@RequestParam("phoneNumber") String phoneNumber, @RequestParam("address") String address, @RequestParam("city") String city, @RequestParam("postalCode") String postalCode,
@@ -109,6 +115,7 @@ public class PassengerController extends BaseController{
 		return "account-settings-update-page";
 	}
 	
+	// process of booking a flight / inserting booking information
 	@PostMapping("/book-flight")
 	public String bookflight(@RequestParam("custId") int accountId, @RequestParam("flightCode") int flightCode, 
 			@RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") double amountPaid, Model model) {
@@ -125,6 +132,8 @@ public class PassengerController extends BaseController{
 		}
 	}
 	
+	
+	// simulation of payment process
 	@PostMapping("/pay")
 	public String pay(@RequestParam("flightCode") int flightCode, @RequestParam("custId") int custId, @RequestParam("totalPassenger") int totalPassengers, @RequestParam("amountPaid") double amountPaid, Model model) {
 		Flight flight = flightRep.getById(flightCode);

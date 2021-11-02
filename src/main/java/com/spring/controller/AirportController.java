@@ -19,22 +19,26 @@ import com.spring.model.Reservation;
 @Controller
 public class AirportController extends BaseController {
 
+	//home page
 	@RequestMapping("/")
 	public String home(Model model) {
 		model.addAttribute("signedIn", signedIn);
 		return "index";
 	}
 
+	//signup page
 	@RequestMapping("/signup-page")
 	public String signup() {
 		return "signup_page";
 	}
 
+	//signin page
 	@RequestMapping("/signin-page")
 	public String signin(Model model) {
 		return "signin_page";
 	}
 
+	//account page
 	@RequestMapping("/account-page")
 	public String accountpage(Model model) {
 		if (signedIn) {
@@ -49,6 +53,7 @@ public class AirportController extends BaseController {
 		return "error-signin";
 	}
 
+	//booking page
 	@RequestMapping("/booking-page")
 	public String bookingpage(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
 		if (signedIn) {
@@ -79,35 +84,7 @@ public class AirportController extends BaseController {
 		return "error-signin";
 	}
 
-	/*
-	 * @RequestMapping("/booking-page") public String bookingpage(Model model) { if
-	 * (signedIn) { List<Flight> list = flightRep.findAll();
-	 * model.addAttribute("signedIn", signedIn); model.addAttribute("flights",
-	 * list);
-	 * 
-	 * return "booking_page"; }
-	 * 
-	 * return "error-signin"; }
-	 */
-
-
-//	@RequestMapping("/search")
-//	public String search(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-//
-//		if (signedIn) {
-//			String searchDateString = request.getParameter("search");
-//			Date searchDate = new SimpleDateFormat("yyyy-MM-dd").parse((searchDateString));
-//
-//			List<Flight> listFlights = flightRep.getFlightsByDate(searchDate, searchDate);
-//
-//			model.addAttribute("flights", listFlights);
-//
-//			return "booking_page";
-//		}
-//
-//		return "error-signin";
-//	}
-	
+	//get checkout page 
 	@RequestMapping("/checkout-flight")
 	public String checkoutpage(@RequestParam("flightCode") int flightCode, Model model) {
 		

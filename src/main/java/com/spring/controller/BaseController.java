@@ -6,8 +6,9 @@ import com.spring.repository.FlightRepository;
 import com.spring.repository.ReservationRepository;
 
 public class BaseController {
-	protected static boolean signedIn = false;
 	
+	// simulation of sign in process with boolean
+	protected static boolean signedIn = false;
 	protected static int accountId = 0;
 	
 	@Autowired
