@@ -1,5 +1,8 @@
 package com.spring.controller;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,8 +37,19 @@ public class ReservationController extends BaseController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(@RequestParam("id") int reservationId) {
+	public RedirectView delete(@RequestParam("id") int reservationId) throws Exception {
 		
-		return "reservation-update";
+		Reservation reservation = resRep.getById(reservationId);
+		
+		Date departureDateOfFlight = resRep.getDateOfFlight(reservationId);
+		Date todayDate = new Date();
+		
+		long differenceInMillies = Math.abs(departureDateOfFlight.getTime() - todayDate.getTime());
+	    long differenceInDays = TimeUnit.DAYS.convert(differenceInMillies, TimeUnit.MILLISECONDS);
+	    
+	    if (differenceInDays >= 14)
+			resRep.delete(reservation);
+		
+		return new RedirectView("/account-page");
 	}
 }

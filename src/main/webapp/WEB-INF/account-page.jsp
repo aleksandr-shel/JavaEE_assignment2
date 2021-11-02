@@ -97,7 +97,7 @@
 						<a href="/reservation/update-page?id=${info[11] }">Edit</a>
 					</td>
 					<td>
-						<a href="/">Delete</a>
+						<a href="/reservation/delete?id=${info[11] }">Delete</a>
 					</td>
 				</tr>
 				</c:forEach>

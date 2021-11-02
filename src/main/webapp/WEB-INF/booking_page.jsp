@@ -54,14 +54,8 @@
 			<label for="searchArrival">Arrival Date: </label>
 			<input id="searchArrival" name="searchArrival" placeholder="yyyy-mm-dd" maxlength="10"
 														pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" required>
-														
-			<br><br>
-			
-			<label for="numberPassengers">Number of Passengers: </label>
-			<input type="number" id="numberPassengers" name="numberPassengers" min="1" step="1" required>
-		</section>
 		
-		<br>
+		<br><br>
 		
 		<section>
 			<input type="submit" id="searchButton" name="searchButton" value="Search" />
