@@ -1,3 +1,6 @@
+//Aleksandr Shelukheev - 301137921
+//Egor Shevchenko - 301084181
+
 package com.spring.model;
 
 import java.util.HashSet;

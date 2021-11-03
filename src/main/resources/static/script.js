@@ -1,4 +1,5 @@
-
+//Aleksandr Shelukheev - 301137921
+//Egor Shevchenko - 301084181
 
 (function(){
 	let totalPassenger = document.querySelector("#totalPassenger"), 
